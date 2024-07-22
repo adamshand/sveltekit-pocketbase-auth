@@ -1,0 +1,19 @@
+@import 'open-props/open-props.min.css';
+@import 'open-props/normalize.min.css';
+@import 'open-props/buttons.min.css';
+
+:root {
+	--brand: var(--pink-4);
+}
+form,
+fieldset {
+	display: grid;
+	gap: 1rem;
+}
+
+h1,
+h2,
+h3,
+nav {
+	color: var(--brand);
+}
