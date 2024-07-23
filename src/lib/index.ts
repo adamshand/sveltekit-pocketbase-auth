@@ -1,3 +1,14 @@
+export const formatLocalDate = (d: string) => {
+	const locale = navigator.language;
+	const timeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+	return new Date(d).toLocaleDateString(locale, {
+		day: 'numeric',
+		month: 'short',
+		timeZone,
+		year: 'numeric'
+	});
+};
+
 export const formatLocalDateTime = (d: string) => {
 	const locale = navigator.language;
 	const timeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -11,18 +22,6 @@ export const formatLocalDateTime = (d: string) => {
 	});
 };
 
-export const formatLocalDate = (d: string) => {
-	const locale = navigator.language;
-	const timeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
-	return new Date(d).toLocaleDateString(locale, {
-		day: 'numeric',
-		month: 'short',
-		timeZone,
-		year: 'numeric'
-	});
-};
-
-// export function getOpenmojiUrl(id: string, { color = true } = {}) {
 export function getOpenmojiUrl(id: string, palette: 'black' | 'color' = 'color') {
 	const baseUrl = 'https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji';
 	// const baseUrl = 'https://unpkg.com/openmoji';

@@ -7,13 +7,23 @@
 }
 form,
 fieldset {
+	margin-top: 1rem;
 	display: grid;
-	gap: 1rem;
+	gap: 0.5rem;
 }
 
+label {
+	/* color: var(--brand); */
+	/* font-weight: bold; */
+	font-size: 1.2rem;
+}
+input {
+	margin-bottom: 1rem;
+}
 h1,
 h2,
 h3,
 nav {
 	color: var(--brand);
+	margin-bottom: 1rem;
 }

@@ -1,9 +1,24 @@
 <script>
-	import { pbUser } from '$lib/pocketbase.svelte';
-
-	let firstName = $derived(pbUser()?.name.toLowerCase().split(' ')[0]);
-	$inspect('/app/+page.svelte', pbUser()?.email);
+	import { page } from '$app/stores';
 </script>
 
-<h1>hi {firstName}!</h1>
-<!-- <h1>hi !</h1> -->
+<article>
+	<h1>Hi {$page.data.user?.name.split(' ')[0] ?? ''}!</h1>
+
+	{#if $page.data.quote}
+		{@const quote = $page.data.quote}
+		<p>{@html quote.content}</p>
+		<p><i>&mdash;&nbsp;{quote.author}</i></p>
+	{/if}
+</article>
+
+<style>
+	article {
+		width: 46ch;
+		margin-inline: auto;
+	}
+	h1,
+	p {
+		text-align: center;
+	}
+</style>

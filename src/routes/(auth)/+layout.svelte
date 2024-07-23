@@ -1,12 +1,9 @@
-<script lang="ts">
-</script>
-
-<div class="container">
+<article>
 	<slot />
-</div>
+</article>
 
 <style>
-	.container {
+	article {
 		width: 40ch;
 	}
 </style>

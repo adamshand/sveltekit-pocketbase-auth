@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { getOpenmojiUrl } from '$lib';
-	import { pb, pbUser } from '$lib/pocketbase.svelte';
 	import FavIcon from '$lib/components/FavIcon.svelte';
-
 	import '$lib/style.css';
+
+	let { children, data } = $props();
+	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/';
 </script>
 
 <FavIcon />
+
 <div>
 	<header>
 		<a href="/">
@@ -16,16 +18,22 @@
 		play.adam.nz
 
 		<span>
-			{#if pbUser()}
+			{#if data.user?.id}
+				<!-- required or hovering on link logs out -->
 				<a data-sveltekit-preload-data="false" href="/sign/out">sign out</a>
 			{:else}
-				<a data-sveltekit-preload-data="false" href="/sign/in">sign in</a>
+				<a href="/sign/in">sign in</a>
 			{/if}
 		</span>
 	</header>
 
 	<main>
-		<slot />
+		{#if data.user?.avatar}
+			{@const src = baseUrl + data.user.avatar}
+			<img alt={data.user.name} {src} title={data.user.name} />
+		{/if}
+
+		{@render children()}
 	</main>
 
 	<footer>If you walk without questions, you might as well not be there. — Tom Brown Jr.</footer>
@@ -61,7 +69,6 @@
 		padding: 0.2rem 1rem;
 		font-size: 0.9rem;
 		color: var(--pink-4);
-		/* background-color: var(--grey-7); */
 		border: 1px solid var(--pink-9);
 		border-radius: 0.25rem;
 		&:hover {
@@ -73,11 +80,15 @@
 		margin-inline: auto;
 		max-width: max(calc(100%-1rem), 66ch);
 		padding: 1rem;
-		/* outline: 2px solid pink; */
+	}
+	main > img {
+		margin: auto;
+		border-radius: 50%;
+		margin-bottom: 1rem;
 	}
 	footer {
 		padding: 0.5rem;
-		border-top: 1px dotted var(--surface-4);
+		border-top: 1px dashed var(--surface-4);
 		text-align: center;
 		color: pink;
 		font-weight: lighter;

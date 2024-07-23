@@ -1,5 +1,3 @@
-<h1>stuff</h1>
-
 <p>
 	A transmission is a firry forecast. In ancient times the glaring spot comes from a wisest botany.
 	The hottest story reveals itself as a writhing red to those who look. Few can name a plagal
@@ -35,11 +33,6 @@
 </p>
 
 <style>
-	h1 {
-		/* outline: 1px solid cyan; */
-		width: 100%;
-		text-align: center;
-	}
 	p {
 		margin-bottom: 1rem;
 	}

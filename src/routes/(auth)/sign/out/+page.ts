@@ -1,13 +1,9 @@
 import { goto, invalidateAll } from '$app/navigation';
-import { pb } from '$lib/pocketbase.svelte';
-
-async function signout() {
-	console.log('/sign/out/+page.ts');
-	pb.authStore.clear();
+export const load = async () => {
+	// +page.server.ts cleans locals
 	await invalidateAll();
 	goto('/');
-}
-
-export const load = async () => {
-	signout();
 };
+
+// When SSR is disabled, you need to run the below to logout
+// pb.authStore.clear();
