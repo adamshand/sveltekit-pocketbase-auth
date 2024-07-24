@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { getOpenmojiUrl } from '$lib';
 	import FavIcon from '$lib/components/FavIcon.svelte';
+	import Header from '$lib/components/Header.svelte';
+
+	import 'open-props/open-props.min.css';
+	import 'open-props/normalize.min.css';
+	import 'open-props/buttons.min.css';
 	import '$lib/style.css';
 
 	let { children, data } = $props();
@@ -10,27 +15,13 @@
 <FavIcon />
 
 <div>
-	<header>
-		<a href="/">
-			<img alt="pig face" src={getOpenmojiUrl('1F437')} />
-		</a>
-
-		play.adam.nz
-
-		<span>
-			{#if data.user?.id}
-				<!-- required or hovering on link logs out -->
-				<a data-sveltekit-preload-data="false" href="/sign/out">sign out</a>
-			{:else}
-				<a href="/sign/in">sign in</a>
-			{/if}
-		</span>
-	</header>
-
+	<Header />
 	<main>
 		{#if data.user?.avatar}
 			{@const src = baseUrl + data.user.avatar}
 			<img alt={data.user.name} {src} title={data.user.name} />
+		{:else}
+			<img alt="pig face" src={getOpenmojiUrl('1F437')} />
 		{/if}
 
 		{@render children()}
@@ -51,31 +42,7 @@
 
 		background-color: var(--surface-1);
 	}
-	header {
-		text-align: center;
-		font-size: 1.5rem;
-		font-weight: bold;
-		padding: 0.5rem;
-		background-color: var(--surface-2);
-		color: var(--pink-4);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	header > a > img {
-		height: 2rem;
-	}
-	header > span > a {
-		padding: 0.2rem 1rem;
-		font-size: 0.9rem;
-		color: var(--pink-4);
-		border: 1px solid var(--pink-9);
-		border-radius: 0.25rem;
-		&:hover {
-			background-color: var(--pink-0);
-			color: var(--pink-9);
-		}
-	}
+
 	main {
 		margin-inline: auto;
 		max-width: max(calc(100%-1rem), 66ch);
@@ -83,6 +50,7 @@
 	}
 	main > img {
 		margin: auto;
+		width: 11rem;
 		border-radius: 50%;
 		margin-bottom: 1rem;
 	}
