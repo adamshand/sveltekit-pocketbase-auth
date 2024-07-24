@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { browser, dev } from '$app/environment';
-	import { goto, invalidateAll } from '$app/navigation';
-	import { onDestroy, onMount } from 'svelte';
+	import { dev } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { pb } from '$lib/pocketbase.svelte';
+	import { pb, pbError } from '$lib/pocketbase.svelte';
 
 	import Debug from '$lib/components/Debug.svelte';
 
@@ -11,42 +10,37 @@
 	const pbUser = $derived($page.data.user);
 	const pbUserId = $derived($page.data.user?.id);
 
-	onMount(async () => {
+	$effect(() => {
 		pbUser || goto('/');
 		pbUser?.verified && goto('/app');
 
 		pb.authStore.loadFromCookie(document.cookie);
-		pb.collection('users').subscribe(
-			pbUserId,
-			async (e) => {
-				dev && console.log(`verify: action: ${e.action} verified=${e.record.verified}`);
-				if (e.record.verified) {
-					goto('/app');
-				}
-			},
-			(error: unknown) => {
-				console.error(`verify/+page.svelte: subscription error: ${error}`);
-			}
-		);
-	});
 
-	onDestroy(() => {
-		pb.collection('users').unsubscribe(pbUserId);
+		pb.collection('users').subscribe(pbUserId, (e) => {
+			dev && console.log(`verify: action: ${e.action} verified=${e.record.verified}`);
+			if (e.record.verified) {
+				goto('/app');
+			}
+		});
+
+		return () => pb.collection('users').unsubscribe(pbUserId);
 	});
 
 	async function handleForm() {
 		isLoading = true;
 
-		try {
-			if (pbUser) {
-				await pb.collection('users').requestVerification(pbUser.email);
+		// just to make the loading spinner show
+		setTimeout(async () => {
+			try {
+				if (pbUser) {
+					await pb.collection('users').requestVerification(pbUser.email);
+				}
+			} catch (err: unknown) {
+				pbError(err);
+			} finally {
+				isLoading = false;
 			}
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		} catch (err: any) {
-			dev && console.error('(dev) verify/+page.svelte: ', err.message);
-		} finally {
-			isLoading = false;
-		}
+		}, 1500);
 	}
 </script>
 
@@ -72,8 +66,9 @@
 
 	<Debug>
 		<ul>
-			<li>username: {pbUser?.username}</li>
-			<li>verified: {pbUser?.verified}</li>
+			{#each Object.keys(pbUser) as user}
+				<li>{`${user}: ${pbUser[user]}`}</li>
+			{/each}
 		</ul>
 	</Debug>
 </article>
@@ -82,13 +77,8 @@
 	h3 {
 		text-align: center;
 	}
-	section {
-		display: flex;
-		justify-content: center;
-	}
-	p,
 	button {
-		margin-bottom: 1rem;
+		width: 100%;
 	}
 	mark {
 		color: var(--brand);
