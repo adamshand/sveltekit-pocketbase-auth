@@ -24,8 +24,12 @@ export const handle = async ({ event, resolve }) => {
 	}
 
 	const response = await resolve(event);
-	// FIXME: event.locals.pb.authStore.exportToCookie({ secure: isProd, sameSite: 'Lax', httpOnly: false })
-	response.headers.set('set-cookie', event.locals.pb.authStore.exportToCookie({ secure: true }));
+
+	// httpOnly = false is required for realtime to get the cookie (see verify/+page.svelte)
+	response.headers.set(
+		'set-cookie',
+		event.locals.pb.authStore.exportToCookie({ secure: true, httpOnly: false, sameSite: 'Lax' })
+	);
 	return response;
 };
 
