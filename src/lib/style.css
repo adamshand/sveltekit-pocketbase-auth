@@ -5,6 +5,7 @@
 :root {
 	--brand: var(--pink-4);
 }
+
 form,
 fieldset {
 	margin-top: 1rem;
@@ -26,4 +27,40 @@ h3,
 nav {
 	color: var(--brand);
 	margin-bottom: 1rem;
+}
+
+/* Loading spinner for buttons */
+button[type='submit'] {
+	position: relative;
+	border: 2px solid var(--pink-9);
+	color: var(--pink-4);
+}
+button[type='submit'][aria-busy='true'] {
+	color: transparent;
+}
+button[type='submit'][aria-busy='true'] > span {
+	visibility: hidden;
+}
+button[type='submit'][aria-busy='true']::after {
+	content: '';
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	border: 4px solid var(--brand);
+	border-top-color: #000000;
+	border-radius: 50%;
+	animation: spinner 1s ease-in-out infinite;
+}
+@keyframes spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
