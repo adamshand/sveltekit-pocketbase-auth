@@ -14,11 +14,11 @@
 
 <style>
 	fieldset {
-		border: 1px solid var(--brand);
+		border: 2px dashed var(--surface-4);
 		padding: 0rem 0.5rem 0.5rem 0.5rem;
+		color: var(--surface-4);
 	}
 	legend {
 		padding-inline: 0.5rem;
-		color: var(--brand);
 	}
 </style>
