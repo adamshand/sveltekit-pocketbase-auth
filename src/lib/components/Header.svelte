@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import FavIcon from '$lib/components/FavIcon.svelte';
 
+	// FIXME: use pb.getFileUrl()
 	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/';
 </script>
 
