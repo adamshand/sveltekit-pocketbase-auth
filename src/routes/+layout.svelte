@@ -20,7 +20,7 @@
 		{#if data.user?.avatar}
 			{@const src = baseUrl + data.user.avatar}
 			<img alt={data.user.name} {src} title={data.user.name} />
-		{:else}
+		{:else if data.user}
 			<img alt="pig face" src={getOpenmojiUrl('1F437')} />
 		{/if}
 
