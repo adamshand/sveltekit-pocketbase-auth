@@ -8,24 +8,28 @@
 	import Debug from '$lib/components/Debug.svelte';
 
 	let isLoading = $state(false);
-	const pbUser = $state($page.data.user);
+	const pbUser = $derived($page.data.user);
 	const pbUserId = $derived($page.data.user?.id);
 
 	onMount(async () => {
-		!pbUser && goto('/');
+		pbUser || goto('/');
 		pbUser?.verified && goto('/app');
 
 		pb.authStore.loadFromCookie(document.cookie);
-		pb.collection('users').subscribe(pbUserId, async (e) => {
-			dev && console.log(`${e.action}: verified=${e.record.verified}`);
-			invalidateAll();
-
-			// if (e.record.verified) {
-			// 	await pb.collection('users').authRefresh();
-			// 	goto('/app');
-			// }
-		});
+		pb.collection('users').subscribe(
+			pbUserId,
+			async (e) => {
+				dev && console.log(`verify: action: ${e.action} verified=${e.record.verified}`);
+				if (e.record.verified) {
+					goto('/app');
+				}
+			},
+			(error: unknown) => {
+				console.error(`verify/+page.svelte: subscription error: ${error}`);
+			}
+		);
 	});
+
 	onDestroy(() => {
 		pb.collection('users').unsubscribe(pbUserId);
 	});
