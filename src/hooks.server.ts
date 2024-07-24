@@ -24,6 +24,7 @@ export const handle = async ({ event, resolve }) => {
 	}
 
 	const response = await resolve(event);
+	// FIXME: event.locals.pb.authStore.exportToCookie({ secure: isProd, sameSite: 'Lax', httpOnly: false })
 	response.headers.set('set-cookie', event.locals.pb.authStore.exportToCookie({ secure: true }));
 	return response;
 };
