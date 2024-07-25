@@ -1,4 +1,4 @@
-// just convenience so types can all be imported from same file
+import PocketBase, { RecordService } from 'pocketbase';
 export type { AuthModel, ClientResponseError } from 'pocketbase';
 
 export interface User {
@@ -13,4 +13,9 @@ export interface User {
 	updated: string;
 	username: string;
 	verified: boolean;
+}
+
+// https://github.com/pocketbase/js-sdk?tab=readme-ov-file#specify-typescript-definitions
+export interface TypedPocketBase extends PocketBase {
+	collection(idOrName: 'users'): RecordService<User>;
 }

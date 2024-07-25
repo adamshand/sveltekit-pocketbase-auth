@@ -7,40 +7,39 @@
 	import Debug from '$lib/components/Debug.svelte';
 
 	let isLoading = $state(false);
-	const pbUser = $derived($page.data.user);
-	const pbUserId = $derived($page.data.user?.id);
 
 	$effect(() => {
-		pbUser || goto('/');
-		pbUser?.verified && goto('/app');
+		$page.data.user || goto('/');
+		$page.data.user?.verified && goto('/app');
 
-		pb.authStore.loadFromCookie(document.cookie);
-
-		pb.collection('users').subscribe(pbUserId, (e) => {
+		pb.collection('users').subscribe($page.data.user?.id, (e) => {
 			dev && console.log(`verify: action: ${e.action} verified=${e.record.verified}`);
 			if (e.record.verified) {
 				goto('/app');
 			}
 		});
 
-		return () => pb.collection('users').unsubscribe(pbUserId);
+		return () => {
+			dev && console.log('verify: unsubscribe', $page.data.user?.id);
+			pb.collection('users').unsubscribe($page.data.user?.id);
+		};
 	});
 
 	async function handleForm() {
 		isLoading = true;
 
-		// just to make the loading spinner show
-		setTimeout(async () => {
-			try {
-				if (pbUser) {
-					await pb.collection('users').requestVerification(pbUser.email);
-				}
-			} catch (err: unknown) {
-				pbError(err);
-			} finally {
-				isLoading = false;
+		try {
+			if ($page.data.user) {
+				await pb.collection('users').requestVerification($page.data.user.email);
+				dev && console.log('verify: resend email', $page.data.user?.email);
+				await new Promise((resolve) => setTimeout(resolve, 1500)); // give loading spinner time
 			}
-		}, 1500);
+		} catch (err: unknown) {
+			// FIXME: repeated requests within 120 sec trigger an error, but it isn't being caught??
+			pbError(err);
+		} finally {
+			isLoading = false;
+		}
 	}
 </script>
 
@@ -48,11 +47,11 @@
 	<h3>Verify your account</h3>
 
 	<p>
-		Hey <mark>{pbUser?.name?.split(' ')[0]}</mark>, welcome to Play. One last step and your account
-		will be active.
+		Welcome <mark>{$page.data.user?.name?.split(' ')[0]}</mark>! One last step and your account will
+		be active.
 	</p>
 	<p>
-		We have sent a verification email to <mark>{pbUser?.email}</mark>
+		We have sent a verification email to <mark>{$page.data.user?.email}</mark>
 	</p>
 	<p>Please find the email, and click on the link included to automatically verify your account.</p>
 
@@ -65,11 +64,13 @@
 	</section>
 
 	<Debug>
-		<ul>
-			{#each Object.keys(pbUser) as user}
-				<li>{`${user}: ${pbUser[user]}`}</li>
-			{/each}
-		</ul>
+		{#if $page.data.user}
+			<ul>
+				{#each Object.keys($page.data.user) as user}
+					<li>{`${user}: ${$page.data.user[user]}`}</li>
+				{/each}
+			</ul>
+		{/if}
 	</Debug>
 </article>
 

@@ -1,14 +1,10 @@
-import type { AuthModel, ClientResponseError, User } from '$lib/types';
+import type { TypedPocketBase } from '$lib/types';
 
-import PocketBase, { RecordService } from 'pocketbase';
+import PocketBase from 'pocketbase';
 import { env } from '$env/dynamic/public';
 
-interface TypedPocketBase extends PocketBase {
-	collection(idOrName: 'users'): RecordService<User>;
-}
-
 export const handle = async ({ event, resolve }) => {
-	event.locals.pb = new PocketBase(env.PUBLIC_POCKETBASE_URL);
+	event.locals.pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase;
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
 	// dev && console.log('hooks.server: ', event.locals.pb.authStore.model);
