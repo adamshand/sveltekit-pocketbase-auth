@@ -1,44 +1,44 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-	import { pb, pbError } from '$lib/pocketbase.svelte';
+	import { dev } from '$app/environment'
+	import { goto } from '$app/navigation'
+	import { page } from '$app/stores'
+	import { pb, pbError } from '$lib/pocketbase.svelte'
 
-	import Debug from '$lib/components/Debug.svelte';
+	import Debug from '$lib/components/Debug.svelte'
 
-	let isLoading = $state(false);
+	let isLoading = $state(false)
 
 	$effect(() => {
-		$page.data.user || goto('/');
-		$page.data.user?.verified && goto('/app');
+		$page.data.user || goto('/')
+		$page.data.user?.verified && goto('/app')
 
 		pb.collection('users').subscribe($page.data.user?.id, (e) => {
-			dev && console.log(`verify: action: ${e.action} verified=${e.record.verified}`);
+			dev && console.log(`verify: action: ${e.action} verified=${e.record.verified}`)
 			if (e.record.verified) {
-				goto('/app');
+				goto('/app')
 			}
-		});
+		})
 
 		return () => {
-			dev && console.log('verify: unsubscribe', $page.data.user?.id);
-			pb.collection('users').unsubscribe($page.data.user?.id);
-		};
-	});
+			dev && console.log('verify: unsubscribe', $page.data.user?.id)
+			pb.collection('users').unsubscribe($page.data.user?.id)
+		}
+	})
 
 	async function handleForm() {
-		isLoading = true;
+		isLoading = true
 
 		try {
 			if ($page.data.user) {
-				await pb.collection('users').requestVerification($page.data.user.email);
-				dev && console.log('verify: resend email', $page.data.user?.email);
-				await new Promise((resolve) => setTimeout(resolve, 1500)); // give loading spinner time
+				await pb.collection('users').requestVerification($page.data.user.email)
+				dev && console.log('verify: resend email', $page.data.user?.email)
+				await new Promise((resolve) => setTimeout(resolve, 1500)) // give loading spinner time
 			}
 		} catch (err: unknown) {
 			// FIXME: repeated requests within 120 sec trigger an error, but it isn't being caught??
-			pbError(err);
+			pbError(err)
 		} finally {
-			isLoading = false;
+			isLoading = false
 		}
 	}
 </script>

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import { page } from '$app/stores';
+	import { enhance } from '$app/forms'
+	import { page } from '$app/stores'
 
-	let username = $state('');
-	let password = $state('');
-	let message = $state($page.url.searchParams.get('message'));
-	let disabled = $derived(!username || !password);
+	let username = $state('')
+	let password = $state('')
+	let message = $state($page.url.searchParams.get('message'))
+	let disabled = $derived(!username || !password)
 </script>
 
 <h3>Sign in to your account</h3>

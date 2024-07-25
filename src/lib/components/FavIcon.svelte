@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-	import { getOpenmojiUrl } from '$lib';
+	import { dev } from '$app/environment'
+	import { getOpenmojiUrl } from '$lib'
 
-	const umamiTrackingCode = '';
+	const umamiTrackingCode = ''
 </script>
 
 <svelte:head>

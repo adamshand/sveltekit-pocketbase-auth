@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { dev } from '$app/environment'
+	import { goto } from '$app/navigation'
+	import { page } from '$app/stores'
 
-	let email = $state('');
-	let name = $state('');
-	let password = $state('');
-	let passwordConfirm = $state('');
-	let message = $state($page.url.searchParams.get('message'));
-	let isLoading = $state(false);
+	let email = $state('')
+	let name = $state('')
+	let password = $state('')
+	let passwordConfirm = $state('')
+	let message = $state($page.url.searchParams.get('message'))
+	let isLoading = $state(false)
 
-	let emailInvalid = $derived(email ? !/^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/gm.test(email) : undefined);
-	let passwordInvalid = $derived(password ? password.length < 8 : undefined);
+	let emailInvalid = $derived(email ? !/^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/gm.test(email) : undefined)
+	let passwordInvalid = $derived(password ? password.length < 8 : undefined)
 	// let passwordConfirmInvalid = $derived(password && passwordConfirm && password !== passwordConfirm)
 	let passwordConfirmInvalid = $derived(
-		password && passwordConfirm ? password !== passwordConfirm : undefined
-	);
-	let disabled = $derived(!email || !password || !passwordConfirm || password !== passwordConfirm);
+		password && passwordConfirm ? password !== passwordConfirm : undefined,
+	)
+	let disabled = $derived(!email || !password || !passwordConfirm || password !== passwordConfirm)
 	// $inspect({ emailInvalid, passwordInvalid, passwordConfirmInvalid, disabled });
 </script>
 

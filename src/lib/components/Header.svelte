@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { getOpenmojiUrl } from '$lib';
-	import { page } from '$app/stores';
-	import FavIcon from '$lib/components/FavIcon.svelte';
+	import { getOpenmojiUrl } from '$lib'
+	import { page } from '$app/stores'
+	import FavIcon from '$lib/components/FavIcon.svelte'
 
 	// FIXME: use pb.getFileUrl()
-	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/';
+	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/'
 </script>
 
 <header>
