@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import { dev } from '$app/environment';
+	import type { Snippet } from 'svelte'
+	import { dev } from '$app/environment'
 
-	let { children, title = 'dev' }: { children: Snippet; title?: string } = $props();
+	let { children, title = 'dev' }: { children: Snippet; title?: string } = $props()
 </script>
 
 {#if dev}

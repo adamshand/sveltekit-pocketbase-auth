@@ -3,8 +3,8 @@
 declare global {
 	namespace App {
 		interface Locals {
-			pb: PocketBase;
-			user: Admin | Record | null;
+			pb: PocketBase
+			user: Admin | Record | null
 		}
 		// interface Error {}
 		// interface Locals {}
@@ -14,4 +14,4 @@ declare global {
 	}
 }
 
-export {};
+export {}

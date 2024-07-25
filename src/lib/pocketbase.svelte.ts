@@ -1,24 +1,24 @@
-import type { ClientResponseError, TypedPocketBase } from '$lib/types';
+import type { ClientResponseError, TypedPocketBase } from '$lib/types'
 
-import PocketBase from 'pocketbase';
-import { browser, dev } from '$app/environment';
-import { error } from '@sveltejs/kit';
-import { env } from '$env/dynamic/public';
+import PocketBase from 'pocketbase'
+import { browser, dev } from '$app/environment'
+import { error } from '@sveltejs/kit'
+import { env } from '$env/dynamic/public'
 
 function createPocketBase(): TypedPocketBase {
-	const pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase;
-	if (browser) pb.authStore.loadFromCookie(document.cookie);
-	return pb;
+	const pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase
+	if (browser) pb.authStore.loadFromCookie(document.cookie)
+	return pb
 }
 
 // CSR only (realtime), can't use $state() in hooks.server
-export const pb = $state(createPocketBase());
+export const pb = $state(createPocketBase())
 
 export const pbError = (e: unknown) => {
-	const err = e as unknown as ClientResponseError;
-	dev && console.log(err?.response);
-	error(err?.status, err?.response?.message);
-};
+	const err = e as unknown as ClientResponseError
+	dev && console.log(err?.response)
+	error(err?.status, err?.response?.message)
+}
 
 // For CSR
 // import type { AuthModel } from '$lib/types';

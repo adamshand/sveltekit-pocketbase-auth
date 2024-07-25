@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { getOpenmojiUrl } from '$lib';
-	import FavIcon from '$lib/components/FavIcon.svelte';
-	import Header from '$lib/components/Header.svelte';
+	import { getOpenmojiUrl } from '$lib'
+	import FavIcon from '$lib/components/FavIcon.svelte'
+	import Header from '$lib/components/Header.svelte'
 
-	import 'open-props/open-props.min.css';
-	import 'open-props/normalize.min.css';
-	import 'open-props/buttons.min.css';
-	import '$lib/style.css';
+	import 'open-props/open-props.min.css'
+	import 'open-props/normalize.min.css'
+	import 'open-props/buttons.min.css'
+	import '$lib/style.css'
 
-	let { children, data } = $props();
-	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/';
+	let { children, data } = $props()
+	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/'
 </script>
 
 <FavIcon />

@@ -1,33 +1,33 @@
-import type { TypedPocketBase } from '$lib/types';
+import type { TypedPocketBase } from '$lib/types'
 
-import PocketBase from 'pocketbase';
-import { env } from '$env/dynamic/public';
+import PocketBase from 'pocketbase'
+import { env } from '$env/dynamic/public'
 
 export const handle = async ({ event, resolve }) => {
-	event.locals.pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase;
-	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
+	event.locals.pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase
+	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '')
 
 	// dev && console.log('hooks.server: ', event.locals.pb.authStore.model);
 	try {
 		if (event.locals.pb.authStore.isValid) {
-			await event.locals.pb.collection('users').authRefresh();
-			event.locals.user = event.locals.pb.authStore.model;
+			await event.locals.pb.collection('users').authRefresh()
+			event.locals.user = event.locals.pb.authStore.model
 		}
 	} catch (err) {
-		console.error('Error during PocketBase .authRefresh():', err); // Log the error
-		event.locals.pb.authStore.clear();
-		event.locals.user = null;
+		console.error('Error during PocketBase .authRefresh():', err) // Log the error
+		event.locals.pb.authStore.clear()
+		event.locals.user = null
 	}
 
-	const response = await resolve(event);
+	const response = await resolve(event)
 
 	// httpOnly = false is required for realtime to get the cookie (see verify/+page.svelte)
 	response.headers.set(
 		'set-cookie',
-		event.locals.pb.authStore.exportToCookie({ secure: true, httpOnly: false, sameSite: 'Lax' })
-	);
-	return response;
-};
+		event.locals.pb.authStore.exportToCookie({ secure: true, httpOnly: false, sameSite: 'Lax' }),
+	)
+	return response
+}
 
 // import { blockUrlParamsRegex, blockUrlPathRegex, pbUrl } from '$lib/utils'
 // if (blockUrlPathRegex.test(event.url.pathname)) error(403, 'Bad bot, no cookie.')

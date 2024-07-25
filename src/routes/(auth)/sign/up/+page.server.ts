@@ -1,44 +1,44 @@
-import { redirect } from '@sveltejs/kit';
-import { pbError } from '$lib/pocketbase.svelte';
-import { dev } from '$app/environment';
+import { redirect } from '@sveltejs/kit'
+import { pbError } from '$lib/pocketbase.svelte'
+import { dev } from '$app/environment'
 
 export const load = async ({ locals }) => {
-	locals.user && redirect(307, '/verify');
-};
+	locals.user && redirect(307, '/verify')
+}
 
 export const actions = {
 	default: async ({ locals, request }) => {
 		const form = Object.fromEntries(await request.formData()) as {
-			name: string;
-			email: string;
-			password: string;
-			passwordConfirm: string;
-		};
+			name: string
+			email: string
+			password: string
+			passwordConfirm: string
+		}
 
-		dev && console.log('form', form);
+		dev && console.log('form', form)
 
 		const user = {
 			email: form.email,
 			name: form.name,
 			password: form.password,
 			passwordConfirm: form.passwordConfirm,
-			username: form.name.toLowerCase().replace(/[^A-Za-z0-9]/g, '')
-		};
+			username: form.name.toLowerCase().replace(/[^A-Za-z0-9]/g, ''),
+		}
 
-		dev && console.log('user', user);
+		dev && console.log('user', user)
 
 		try {
 			if (user.email && user.password) {
-				await locals.pb.collection('users').create(user);
-				await locals.pb.collection('users').requestVerification(user.email);
-				await locals.pb.collection('users').authWithPassword(user.email, user.password);
+				await locals.pb.collection('users').create(user)
+				await locals.pb.collection('users').requestVerification(user.email)
+				await locals.pb.collection('users').authWithPassword(user.email, user.password)
 			}
 		} catch (err: unknown) {
-			pbError(err);
+			pbError(err)
 		}
-		redirect(307, '/verify');
-	}
-};
+		redirect(307, '/verify')
+	},
+}
 
 // async function handleForm() {
 // 	isLoading = true;
