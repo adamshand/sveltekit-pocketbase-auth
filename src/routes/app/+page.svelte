@@ -1,24 +1,45 @@
 <script>
-	import { page } from '$app/stores'
+	const routes = Object.keys(import.meta.glob('/src/routes/**/+page.svelte'))
+		.filter((route) => route.includes('/src/routes/app/'))
+		.map((route) => {
+			const parts = route.split('/')
+			const appIndex = parts.indexOf('app')
+			return parts[appIndex + 1]
+		})
 </script>
 
-<article>
-	<h1>Hi {$page.data.user?.name.split(' ')[0] ?? ''}!</h1>
+<p>Below are some experiments and learnings.</p>
 
-	{#if $page.data.quote}
-		{@const quote = $page.data.quote}
-		<p>{@html quote.content}</p>
-		<p><i>&mdash;&nbsp;{quote.author}</i></p>
-	{/if}
-</article>
+<section>
+	{#each routes as route}
+		<div>
+			<a href="/app/{route}">{route}</a>
+		</div>
+	{/each}
+</section>
 
 <style>
-	article {
-		width: 46ch;
-		margin-inline: auto;
-	}
-	h1,
 	p {
+		margin-inline: auto;
 		text-align: center;
+	}
+	section {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
+	}
+	div {
+		display: grid;
+		place-content: center;
+
+		width: 9rem;
+		aspect-ratio: 1;
+		background-color: var(--surface-3);
+		padding: 1rem;
+
+		border-radius: 0.5rem;
+		font-size: 1.5rem;
+		font-weight: bold;
 	}
 </style>

@@ -12,7 +12,7 @@
 		<img alt="pig face" src={getOpenmojiUrl('1F437')} />
 	</a>
 
-	play.adam.nz
+	<a href="/app">experiments</a>
 
 	<span>
 		{#if $page.data.user?.id}

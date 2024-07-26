@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { dev } from '$app/environment'
-	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
+
+	let isLoading = $state(false)
 
 	let email = $state('')
 	let name = $state('')
 	let password = $state('')
 	let passwordConfirm = $state('')
 	let message = $state($page.url.searchParams.get('message'))
-	let isLoading = $state(false)
 
 	let emailInvalid = $derived(email ? !/^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/gm.test(email) : undefined)
 	let passwordInvalid = $derived(password ? password.length < 8 : undefined)
@@ -30,9 +30,9 @@
 			autocomplete="name"
 			bind:value={name}
 			id="name"
-			name="name"
-			required
 			type="text"
+			required
+			name="name"
 		/>
 
 		<label for="email">Email</label>

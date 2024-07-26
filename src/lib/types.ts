@@ -2,6 +2,7 @@ import PocketBase, { RecordService } from 'pocketbase'
 export type { AuthModel, ClientResponseError } from 'pocketbase'
 
 export interface User {
+	admin: boolean
 	avatar: string
 	collectionId: string
 	collectionName: string

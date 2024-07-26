@@ -2,6 +2,9 @@
 	--brand: var(--pink-4);
 }
 
+a {
+	color: var(--brand);
+}
 form,
 fieldset {
 	margin-top: 1rem;
@@ -21,8 +24,9 @@ h1,
 h2,
 h3,
 nav {
-	color: var(--brand);
 	margin-bottom: 1rem;
+	color: var(--brand);
+	text-align: center;
 }
 p {
 	margin-bottom: 1rem;

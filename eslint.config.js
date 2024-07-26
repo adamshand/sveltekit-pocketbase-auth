@@ -27,16 +27,11 @@ export default [
 				parser: ts.parser,
 			},
 		},
-	},
-	{
-		ignores: ['build/', '.svelte-kit/', 'dist/'],
-	},
-	{
 		plugins: {
 			perfectionist,
 		},
 		rules: {
-			'perfectionist/sort-interfaces': 'error',
+			...perfectionist.configs['recommended-natural'].rules,
 		},
 	},
 ]
