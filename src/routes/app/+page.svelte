@@ -13,7 +13,7 @@
 <section>
 	{#each routes as route}
 		<div>
-			<a href="/app/{route}">{route}</a>
+			<a href="/app/{route}">{route.replace(/_/g, ' ')}</a>
 		</div>
 	{/each}
 </section>
@@ -41,5 +41,7 @@
 		border-radius: 0.5rem;
 		font-size: 1.5rem;
 		font-weight: bold;
+		text-align: center;
+		text-transform: capitalize;
 	}
 </style>
