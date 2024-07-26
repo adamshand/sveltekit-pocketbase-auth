@@ -5,6 +5,7 @@ declare global {
 		interface Locals {
 			pb: PocketBase
 			user: Admin | Record | null
+			security: Security
 		}
 		// interface Error {}
 		// interface Locals {}
