@@ -2,7 +2,8 @@
 </script>
 
 <p>
-	If you see this you have a valid PocketBase user and your account has a verified email address.
+	You are <mark>signed in</mark> to your account and your email address has been
+	<mark> verified</mark>.
 </p>
 
 <style>

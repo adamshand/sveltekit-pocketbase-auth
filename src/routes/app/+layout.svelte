@@ -13,7 +13,6 @@
 
 <style>
 	article {
-		/* width: 64ch; */
 		margin-inline: auto;
 	}
 	section {

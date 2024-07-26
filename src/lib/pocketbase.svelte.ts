@@ -38,10 +38,12 @@ export class Security {
 
 	isAuthenticated() {
 		if (!this.user) {
-			redirect(307, '/sign/in')
+			// redirect(307, '/sign/in')
+			error(401, 'You are not signed in.')
 		}
 		if (!this.user?.verified) {
-			redirect(307, '/verify')
+			// redirect(307, '/verify')
+			error(403, "Your account's email address has not been verified")
 		}
 		return this
 	}
@@ -51,7 +53,7 @@ export class Security {
 		this.isAuthenticated()
 
 		if (this.user && !this.user?.admin) {
-			error(403, 'not administrator')
+			error(403, 'Your account is not an administrator.')
 		}
 		return this
 	}

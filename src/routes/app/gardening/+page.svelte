@@ -1,27 +1,28 @@
 <script lang="ts">
 </script>
 
+<p>Example event card for Toru.</p>
 <div class="wrapper">
 	<img alt="" src="/easy-lazy-gardening.jpg" />
-	<!-- <div class="event"> -->
-	<mark>Partner Event </mark>
+	<div class="event">
+		<mark>Partner Event </mark>
 
-	<h1>Easy, Lazy No-stress Gardening</h1>
+		<h3>Easy, Lazy No-stress Gardening</h3>
 
-	<p class="description">
-		Whether you want to provide affordable, nutrient-rich food for your family or you are worried
-		about the Zombie Apocalypse, gardens are a wonderful way to provide care and resilience to your
-		family and community.
-	</p>
+		<p class="description">
+			Whether you want to provide affordable, nutrient-rich food for your family or you are worried
+			about the Zombie Apocalypse, gardens are a wonderful way to provide care and resilience to
+			your family and community.
+		</p>
 
-	<p class="details">
-		Sunday, November 3, 2024
-		<br /> 13:00 – 17:00
-		<br />Kapiti Coast
-	</p>
+		<p class="details">
+			Sunday, November 3, 2024
+			<br /> 13:00 – 17:00
+			<br />Kapiti Coast
+		</p>
 
-	<button>Event Details</button>
-	<!-- </div> -->
+		<button>Event Details</button>
+	</div>
 </div>
 
 <style>
@@ -30,10 +31,8 @@
 		flex-direction: column;
 		gap: 0.5rem;
 
-		margin-top: 10ch;
 		margin-inline: auto;
 		width: 30ch;
-		padding: 0.5rem;
 		border: 2px solid #7f8e20;
 		border-radius: 0.375rem;
 	}
@@ -44,6 +43,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+		padding: 0.5rem;
+
 		border-top: none;
 	}
 	mark {
@@ -57,14 +58,6 @@
 		text-align: center;
 	}
 
-	h1 {
-		margin: 0;
-		font-weight: 200;
-		text-align: center;
-	}
-	p {
-		margin: 0;
-	}
 	.description {
 		text-align: justify;
 		hyphens: auto;

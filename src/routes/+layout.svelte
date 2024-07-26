@@ -48,7 +48,7 @@
 
 	main {
 		margin-inline: auto;
-		max-width: max(calc(100%-1rem), 66ch);
+		max-width: max(calc(100% - 2rem), 66ch);
 		padding: 1rem;
 	}
 	main > img {

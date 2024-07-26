@@ -2,11 +2,14 @@
 	import { page } from '$app/stores'
 </script>
 
-{#if $page.data.user}
-	<h1>Hi {$page.data.user?.name.split(' ')[0] ?? ''}!</h1>
-{:else}
-	<h1>Welcome stranger!</h1>
-{/if}
+<h1>
+	Welcome <br />
+	{#if $page.data.user}
+		{$page.data.user?.name.split(' ')[0] ?? ''}
+	{:else}
+		Stranger
+	{/if}
+</h1>
 
 <style>
 </style>

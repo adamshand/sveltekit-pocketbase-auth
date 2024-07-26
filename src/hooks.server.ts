@@ -20,6 +20,7 @@ export const handle = async ({ event, resolve }) => {
 		event.locals.user = null
 	}
 
+	// Must always run, but be after .loadFromCookie & .authRefresh
 	event.locals.security = new Security(event)
 
 	const response = await resolve(event)

@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<p>If you see this you are an administrator.</p>
+<p>Your account has <mark>administrator</mark> privileges.</p>
 
 <style>
 	p {

@@ -14,11 +14,11 @@
 		'HighlightText',
 		'Mark',
 		'MarkText',
-		'GrayText'
-	];
+		'GrayText',
+	]
 </script>
 
-<h1>Dark</h1>
+<h2>Dark</h2>
 
 <section style="color-scheme: dark;">
 	{#each colors as color}
@@ -30,7 +30,7 @@
 
 <hr />
 
-<h1>Light</h1>
+<h2>Light</h2>
 
 <section style="color-scheme: light;">
 	{#each colors as color}
@@ -41,25 +41,28 @@
 </section>
 
 <style>
+	h2 {
+		text-align: center;
+	}
 	section {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: 3px;
+		justify-content: center;
 	}
 	div {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 19%;
-		height: 25vh;
+		width: 12rem;
+		height: 12rem;
 	}
 	p {
-		padding: 0.7rem;
-		border-radius: 7px;
-		/* background-color: Highlight;
-		color: HighlightText; */
+		padding: 0.5rem;
+		border: 1px solid HighlightText;
+		border-radius: 3px;
 		background-color: Highlight;
 		color: HighlightText;
 	}
