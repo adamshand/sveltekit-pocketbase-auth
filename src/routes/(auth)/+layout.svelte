@@ -8,6 +8,7 @@
 
 <style>
 	article {
+		margin-inline: auto;
 		width: 40ch;
 	}
 </style>

@@ -1,26 +1,40 @@
 <script lang="ts">
 	let colors = [
-		'Canvas',
-		'CanvasText',
-		'LinkText',
-		'VisitedText',
+		'AccentColor',
+		'AccentColorText',
 		'ActiveText',
+		'ButtonBorder',
 		'ButtonFace',
 		'ButtonText',
-		'ButtonBorder',
+		'Canvas',
+		'CanvasText',
 		'Field',
 		'FieldText',
+		'GrayText',
 		'Highlight',
 		'HighlightText',
+		'LinkText',
 		'Mark',
 		'MarkText',
-		'GrayText',
+		'SelectedItem',
+		'SelectedItemText',
+		'VisitedText',
 	]
 </script>
 
+<hgroup>
+	<h1>CSS Color Module Level 4</h1>
+	<p>
+		System Colours:
+		<a href="https://www.w3.org/TR/css-color-4/#css-system-colors">
+			https://www.w3.org/TR/css-color-4/
+		</a>
+	</p>
+</hgroup>
+
 <h2>Dark</h2>
 
-<section style="color-scheme: dark;">
+<section data-theme="dark">
 	{#each colors as color}
 		<div style={`background-color: ${color};`}>
 			<p>{color}</p>
@@ -32,7 +46,7 @@
 
 <h2>Light</h2>
 
-<section style="color-scheme: light;">
+<section data-theme="light">
 	{#each colors as color}
 		<div style={`background-color: ${color};`}>
 			<p>{color}</p>
@@ -41,15 +55,18 @@
 </section>
 
 <style>
-	h2 {
+	p {
 		text-align: center;
 	}
 	section {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: 3px;
+		gap: 0.5rem;
 		justify-content: center;
+
+		padding: 1rem;
+		background-color: Canvas;
 	}
 	div {
 		display: flex;

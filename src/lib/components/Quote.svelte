@@ -10,14 +10,14 @@
 {/if}
 
 <style>
-	.quote {
-		font-size: 0.85rem;
-		color: var(--pink-3);
+	.quote,
+	:global(.quote div, .quote p) {
+		font-size: 0.9rem;
+		color: var(--pink-2);
 		font-weight: lighter;
-		font-size: 0.85rem;
+		/* font-size: 0.85rem; */
 	}
 	:global(.quote div, .quote p) {
 		display: inline;
-		font-size: 0.85rem;
 	}
 </style>

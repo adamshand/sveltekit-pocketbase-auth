@@ -4,9 +4,11 @@
 	import Footer from '$lib/components/Footer.svelte'
 	import Header from '$lib/components/Header.svelte'
 
-	import 'open-props/open-props.min.css'
-	import 'open-props/normalize.min.css'
-	import 'open-props/buttons.min.css'
+	// import 'open-props/open-props.min.css'
+	// import 'open-props/normalize.min.css'
+	// import 'open-props/buttons.min.css'
+	import '@picocss/pico/css/pico.pink.min.css'
+	import '@picocss/pico/css/pico.colors.min.css'
 	import '$lib/style.css'
 
 	let { children, data } = $props()
@@ -48,11 +50,15 @@
 
 	main {
 		margin-inline: auto;
-		max-width: max(calc(100% - 2rem), 66ch);
+		/* width: min(calc(100% - 2rem), 66ch); */
 		padding: 1rem;
+
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 	main > img {
-		margin: auto;
+		margin-inline: auto;
 		width: 11rem;
 		border-radius: 50%;
 	}

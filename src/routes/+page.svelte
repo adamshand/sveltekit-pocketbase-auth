@@ -17,8 +17,14 @@
 </a>
 
 <style>
+	a {
+		margin-inline: auto;
+	}
 	img {
 		width: 5rem;
-		margin-inline: auto;
+		&:hover {
+			rotate: 7deg;
+			transform: scale(1.1);
+		}
 	}
 </style>

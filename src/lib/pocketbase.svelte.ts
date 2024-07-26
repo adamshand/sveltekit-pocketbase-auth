@@ -42,8 +42,8 @@ export class Security {
 			error(401, 'You are not signed in.')
 		}
 		if (!this.user?.verified) {
-			// redirect(307, '/verify')
-			error(403, "Your account's email address has not been verified")
+			redirect(307, '/verify')
+			// error(403, "Your account's email address has not been verified")
 		}
 		return this
 	}

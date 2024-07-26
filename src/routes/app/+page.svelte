@@ -8,7 +8,7 @@
 		})
 </script>
 
-<p>Below are some experiments and learnings.</p>
+<p>Below are some experiments and learnings. They may or may not be in a working state.</p>
 
 <section>
 	{#each routes as route}
@@ -35,7 +35,7 @@
 
 		width: 9rem;
 		aspect-ratio: 1;
-		background-color: var(--surface-3);
+		background-color: var(--surface-2);
 		padding: 1rem;
 
 		border-radius: 0.5rem;
@@ -43,5 +43,8 @@
 		font-weight: bold;
 		text-align: center;
 		text-transform: capitalize;
+	}
+	a {
+		text-decoration: none;
 	}
 </style>

@@ -7,6 +7,7 @@
 
 <article>
 	<h1>Tab Outlines</h1>
+
 	<header>
 		<div></div>
 		{#each tabs as tab, i}
@@ -14,6 +15,7 @@
 		{/each}
 		<div></div>
 	</header>
+
 	<section>
 		<Ipsum />
 	</section>

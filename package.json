@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@picocss/pico": "^2.0.6",
 		"open-props": "^1.7.5",
 		"pocketbase": "^0.21.3"
 	}
