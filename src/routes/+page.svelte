@@ -13,7 +13,7 @@
 </h1>
 
 <a href="https://github.com/adamshand/sveltekit-pocketbase-auth">
-	<img alt="pig face" src={getOpenmojiUrl('E045')} />
+	<img alt="github" src={getOpenmojiUrl('E045')} />
 </a>
 
 <style>

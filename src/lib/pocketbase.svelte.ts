@@ -1,27 +1,34 @@
 import type { ClientResponseError, TypedPocketBase, User } from '$lib/types'
-
 import PocketBase from 'pocketbase'
 import { browser, dev } from '$app/environment'
 import { error, redirect, type RequestEvent } from '@sveltejs/kit'
 import { env } from '$env/dynamic/public'
 
-function createPocketBase(): TypedPocketBase {
-	const pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase
-	if (browser) {
-		pb.authStore.loadFromCookie(document.cookie)
-	}
-	return pb
-	// FIXME: is this a bug? What should it return in SSR?
+export const getAvatarUrl = (user: User) => {
+	// FIXME: Use pb.getFileUrl()
+	const base = `${env.PUBLIC_POCKETBASE_URL}/api/files/systemprofiles0`
+	return user ? `${base}/${user.id}/${user.avatar}` : null
 }
 
-// CSR only (realtime), can't use $state() in hooks.server
-export const pb = $state(createPocketBase())
-
+export function pbAvatarUrl(user: User, size: 'lg' | 'sm' = 'sm') {}
 export const pbError = (e: unknown) => {
 	const err = e as unknown as ClientResponseError
 	dev && console.log(err?.response)
 	error(err?.status, err?.response?.message)
 }
+
+// ***** CSR Only: Used for realtime ***
+function createPocketBase(): TypedPocketBase {
+	const pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase
+	if (browser) {
+		pb.authStore.loadFromCookie(document.cookie)
+	}
+	// FIXME: is this a bug? Should it return an empty object or error if run with SSR?
+	return pb
+}
+
+export const pb = $state(createPocketBase())
+// ***** End CSR Only ***
 
 export class Security {
 	// TODO: What if you forget to call any of the security methods in a server load function? Oh noes!

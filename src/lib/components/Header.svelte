@@ -2,7 +2,6 @@
 	import { getOpenmojiUrl } from '$lib'
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
-	import FavIcon from '$lib/components/FavIcon.svelte'
 
 	// FIXME: use pb.getFileUrl()
 	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/'
@@ -17,11 +16,8 @@
 
 	<span>
 		{#if $page.data.user?.id}
-			<!-- required or hovering on link logs out -->
-			<!-- <a data-sveltekit-preload-data="false" href="/sign/out">sign out</a> -->
 			<button onclick={() => goto('/sign/out')}>sign out</button>
 		{:else}
-			<!-- <a href="/sign/in">sign in</a> -->
 			<button onclick={() => goto('/sign/in')}>sign in</button>
 		{/if}
 	</span>
@@ -33,14 +29,14 @@
 		justify-content: space-between;
 		align-items: center;
 
-		font-size: 2rem;
+		font-size: 1.5rem;
 		font-weight: bold;
 		padding: 0.5rem;
 		background-color: var(--surface-2);
 		color: var(--brand);
 	}
 	header > a > img {
-		height: 3rem;
+		height: 2.5rem;
 		&:hover {
 			rotate: -15deg;
 			transform: scale(1.1);

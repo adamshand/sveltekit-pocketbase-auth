@@ -15,7 +15,7 @@ export const actions = {
 			passwordConfirm: string
 		}
 
-		dev && console.log('form', form)
+		dev && console.log('(auth)/sign/up/+page.server', form)
 
 		const user = {
 			email: form.email,

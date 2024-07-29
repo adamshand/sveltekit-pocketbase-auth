@@ -1,19 +1,16 @@
 <script lang="ts">
-	import { getOpenmojiUrl } from '$lib'
 	import FavIcon from '$lib/components/FavIcon.svelte'
 	import Footer from '$lib/components/Footer.svelte'
 	import Header from '$lib/components/Header.svelte'
 
-	// import 'open-props/open-props.min.css'
-	// import 'open-props/normalize.min.css'
-	// import 'open-props/buttons.min.css'
+	import { getAvatarUrl } from '$lib/pocketbase.svelte'
+	import { getOpenmojiUrl } from '$lib'
+
 	import '@picocss/pico/css/pico.pink.min.css'
 	import '@picocss/pico/css/pico.colors.min.css'
 	import '$lib/style.css'
 
 	let { children, data } = $props()
-
-	const baseUrl = $derived(`https://pb.haume.nz/api/files/systemprofiles0/${data.user?.id}/`)
 </script>
 
 <FavIcon />
@@ -22,9 +19,10 @@
 	<Header />
 	<main>
 		{#if data.user?.avatar}
-			{@const src = baseUrl + data.user.avatar}
-			<img alt={data.user.name} {src} title={data.user.name} />
-			<!-- {:else if data.user} -->
+			<img alt={data.user.name} src={getAvatarUrl(data.user)} title={data.user.name} />
+		{:else if data.user}
+			<!-- logged in but no avatar -->
+			<img alt="lotus flower" src={getOpenmojiUrl('1F464')} />
 		{:else}
 			<img alt="lotus flower" src={getOpenmojiUrl('1FAB7')} />
 		{/if}

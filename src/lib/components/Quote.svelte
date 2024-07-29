@@ -4,20 +4,22 @@
 
 {#if $page.data.quote}
 	{@const quote = $page.data.quote}
-	<div class="quote">
-		<i>{@html quote.content}</i> &mdash;&nbsp;{quote.author}
-	</div>
+	<section>
+		<div class="quote">{@html quote.content}</div>
+		<div class="author">&mdash;&nbsp;{quote.author}</div>
+	</section>
 {/if}
 
 <style>
-	.quote,
-	:global(.quote div, .quote p) {
-		font-size: 0.9rem;
-		color: var(--pink-2);
-		font-weight: lighter;
-		/* font-size: 0.85rem; */
-	}
-	:global(.quote div, .quote p) {
+	:global(section div, section p) {
 		display: inline;
+		margin-bottom: 0;
+		font-style: italic;
+	}
+	section {
+		margin: 0;
+	}
+	.quote {
+		font-style: italic;
 	}
 </style>

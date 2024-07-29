@@ -43,7 +43,7 @@
 	}
 </script>
 
-<article>
+<div>
 	<h3>Verify your account</h3>
 
 	<p>
@@ -72,7 +72,7 @@
 			</ul>
 		{/if}
 	</Debug>
-</article>
+</div>
 
 <style>
 	h3 {
