@@ -1,3 +1,7 @@
+export const isValidEmail = (email: string) => {
+	return /^[^@\s]+@[^@\s]+\.[^@\s]+/.test(email)
+}
+
 export const formatLocalDate = (d: string) => {
 	const locale = navigator.language
 	const timeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone
