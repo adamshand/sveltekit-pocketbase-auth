@@ -11,7 +11,7 @@ I'm a newish JavaScript developer and I found CSR, SSR, authentication, hooks et
   - Sign in/out/up and verify routes
   - Uses realtime to react to account email being [verified](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/main/src/routes/(auth)/verify/%2Bpage.svelte) (thanks to example by [RdnMach](https://github.com/RbnMach/sveltekit-pocketbase-realtime/blob/main/src/routes/user-panel/ListaItems.svelte))
   - [Security class](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/18d07d480e0264ec55bb4fdc72fb74656c2256c7/src/lib/pocketbase.svelte.ts#L26) for easy and customisable authenticated routes (thanks to [Captain Coderman](https://www.captaincodeman.com/securing-your-sveltekit-app) and [Rasoriano](https://www.reddit.com/r/sveltejs/comments/1eb90ee/comment/let71fh/))
-- PicoCSS
+- [PicoCSS](https://picocss.com/)
   - Simple, default styling
   - Loading spinners
   
