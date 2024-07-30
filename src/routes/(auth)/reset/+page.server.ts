@@ -1,5 +1,4 @@
 import { pbError } from '$lib/pocketbase.svelte.js'
-import { redirect } from '@sveltejs/kit'
 
 export const actions = {
 	default: async ({ locals, request }) => {
@@ -7,12 +6,12 @@ export const actions = {
 			email: string
 		}
 
-		let result: string
 		try {
-			result = await locals.pb.collection('users').requestPasswordReset(form.email)
-			console.log(result)
+			const result = await locals.pb.collection('users').requestPasswordReset(form.email)
+			return { success: result, email: form.email }
 		} catch (e) {
 			console.error(e)
+			pbError(e)
 		}
 	},
 }
