@@ -20,7 +20,7 @@
 		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@types/eslint": "^8.56.11",
-		"eslint": "^9.7.0",
+		"eslint": "^9.8.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-perfectionist": "^2.11.0",
 		"eslint-plugin-svelte": "^2.43.0",
@@ -28,7 +28,7 @@
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.6",
 		"svelte": "5.0.0-next.198",
-		"svelte-check": "^3.8.4",
+		"svelte-check": "^3.8.5",
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.4",
 		"typescript-eslint": "8.0.0-alpha.54",
@@ -38,7 +38,9 @@
 	"type": "module",
 	"dependencies": {
 		"@picocss/pico": "^2.0.6",
+		"@types/md5": "^2.3.5",
+		"md5": "^2.3.0",
 		"open-props": "^1.7.5",
-		"pocketbase": "^0.21.3"
+		"pocketbase": "^0.21.4"
 	}
 }

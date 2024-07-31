@@ -1,6 +1,14 @@
 import PocketBase, { RecordService } from 'pocketbase'
 export type { AuthModel, ClientResponseError } from 'pocketbase'
 
+export interface GravatarUrl {
+	border?: boolean
+	email: string
+	option?: '404' | 'mp' | 'identicon' | 'monsterid' | 'wavatar' | 'retro' | 'robohash' | 'blank'
+	round?: boolean
+	size?: string
+}
+
 export interface User {
 	admin: boolean
 	avatar: string

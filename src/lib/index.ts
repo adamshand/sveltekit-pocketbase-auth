@@ -1,3 +1,5 @@
+import md5 from 'md5'
+
 export const isValidEmail = (email: string) => {
 	return /^[^@\s]+@[^@\s]+\.[^@\s]+/.test(email)
 }
@@ -24,6 +26,11 @@ export const formatLocalDateTime = (d: string) => {
 		timeZone,
 		year: 'numeric',
 	})
+}
+
+export const getGravatarUrl = (email: string) => {
+	const hash = md5(email.trim().toLowerCase())
+	return `https://gravatar.com/avatar/${hash}`
 }
 
 export function getOpenmojiUrl(id: string, palette: 'black' | 'color' = 'color') {
