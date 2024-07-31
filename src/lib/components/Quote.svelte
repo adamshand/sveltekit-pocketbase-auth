@@ -10,6 +10,18 @@
 	</section>
 {/if}
 
+<!-- 
+@component  
+
+## Quote
+
+Pulls a quote from `$page.data.quote` which is loaded in by `+layout.server.ts`
+
+## Props
+
+None.
+-->
+
 <style>
 	:global(section div, section p) {
 		display: inline;
