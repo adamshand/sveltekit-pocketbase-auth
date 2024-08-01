@@ -1,21 +1,34 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { pb } from '$lib/pocketbase.svelte'
+
+	let promise: any = $state({})
+
+	$effect(() => {
+		promise = pb.collection('adam').getList(1, 1, {
+			filter: `format = "quote"`,
+			sort: '@random',
+		})
+	})
 </script>
 
-{#if $page.data.quote}
-	{@const quote = $page.data.quote}
-	<section>
-		<div class="quote">{@html quote.content}</div>
-		<div class="author">&mdash;&nbsp;{quote.author}</div>
-	</section>
-{/if}
+<section class="quote">
+	{#await promise then quote}
+		{#if quote.items}
+			{@const q = quote.items[0]}
+			<div class="text">{@html q.content}</div>
+			<div class="author">&mdash; {q.author}</div>
+		{/if}
+	{:catch e}
+		<p style="color: red">{e.message}</p>
+	{/await}
+</section>
 
 <!-- 
 @component  
 
 ## Quote
 
-Pulls a quote from `$page.data.quote` which is loaded in by `+layout.server.ts`
+Gets a random quote from `pb.haume.nz`.
 
 ## Props
 
@@ -23,15 +36,19 @@ None.
 -->
 
 <style>
-	:global(section div, section p) {
+	section,
+	:global(.quote div, .quote p) {
 		display: inline;
 		margin-bottom: 0;
 		font-style: italic;
+		color: inherit; /* not sure why this is necessary, but without it sometimes the color is bright white */
 	}
-	section {
-		margin: 0;
-	}
-	.quote {
+	.text {
 		font-style: italic;
+	}
+	.author {
+		display: inline-block;
+		max-width: 100%;
+		word-wrap: break-word;
 	}
 </style>

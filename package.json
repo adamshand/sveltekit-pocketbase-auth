@@ -20,6 +20,7 @@
 		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@types/eslint": "^8.56.11",
+		"@types/md5": "^2.3.5",
 		"eslint": "^9.8.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-perfectionist": "^2.11.0",
@@ -38,7 +39,6 @@
 	"type": "module",
 	"dependencies": {
 		"@picocss/pico": "^2.0.6",
-		"@types/md5": "^2.3.5",
 		"md5": "^2.3.0",
 		"open-props": "^1.7.5",
 		"pocketbase": "^0.21.4"
