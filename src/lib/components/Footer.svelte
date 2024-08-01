@@ -4,6 +4,7 @@
 
 <footer>
 	<div>
+		<!-- <Quote id="5v4vesjd1944x56" /> -->
 		<Quote />
 	</div>
 </footer>

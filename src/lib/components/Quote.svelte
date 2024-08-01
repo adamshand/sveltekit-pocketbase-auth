@@ -1,27 +1,33 @@
 <script lang="ts">
 	import { pb } from '$lib/pocketbase.svelte'
 
+	let { id }: { id?: string } = $props()
 	let promise: any = $state({})
 
 	$effect(() => {
-		promise = pb.collection('adam').getList(1, 1, {
-			filter: `format = "quote"`,
-			sort: '@random',
-		})
+		if (id) {
+			promise = pb.collection('quotes_public').getList(1, 1, {
+				filter: `id = "${id}"`,
+			})
+		} else {
+			promise = pb.collection('quotes_public').getList(1, 1, {
+				sort: '@random',
+			})
+		}
 	})
 </script>
 
-<section class="quote">
-	{#await promise then quote}
-		{#if quote.items}
-			{@const q = quote.items[0]}
-			<div class="text">{@html q.content}</div>
-			<div class="author">&mdash; {q.author}</div>
-		{/if}
-	{:catch e}
-		<p style="color: red">{e.message}</p>
-	{/await}
-</section>
+{#await promise then quote}
+	{#if quote?.items?.length}
+		{@const q = quote.items[0]}
+		<blockquote cite={'https://adam.nz/id/' + q.id} class="quote">
+			{@html q.content.trim()}
+			<footer>&mdash; {@html q.author.trim()}</footer>
+		</blockquote>
+	{/if}
+{:catch e}
+	<p style="color: var(--brand)">{e.message}</p>
+{/await}
 
 <!-- 
 @component  
@@ -32,23 +38,29 @@ Gets a random quote from `pb.haume.nz`.
 
 ## Props
 
-None.
--->
+- `id` - returns a specific quote matching the PocketBase id
 
+-->
 <style>
-	section,
-	:global(.quote div, .quote p) {
+	:global(.quote p, .quote div) {
 		display: inline;
-		margin-bottom: 0;
-		font-style: italic;
-		color: inherit; /* not sure why this is necessary, but without it sometimes the color is bright white */
-	}
-	.text {
+		color: inherit;
 		font-style: italic;
 	}
-	.author {
-		display: inline-block;
+	blockquote,
+	footer,
+	p {
+		display: inline;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		color: inherit;
+		font-style: italic;
+	}
+	footer {
 		max-width: 100%;
+		display: inline-block;
 		word-wrap: break-word;
+		font-style: normal;
 	}
 </style>

@@ -49,4 +49,5 @@ export interface User {
 export interface TypedPocketBase extends PocketBase {
 	collection(idOrName: 'users'): RecordService<User>
 	collection(idOrName: 'adam'): RecordService<Adam>
+	collection(idOrName: 'quotes_public'): RecordService<Adam>
 }
