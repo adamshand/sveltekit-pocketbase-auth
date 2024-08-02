@@ -35,25 +35,13 @@
 		background-color: var(--surface-2);
 		color: var(--brand);
 	}
-	header > a > img {
+	header img {
 		height: 2.5rem;
 		&:hover {
 			rotate: -15deg;
 			transform: scale(1.1);
 		}
 	}
-	/* header > span > a {
-		padding: 0.2rem 1rem;
-		font-size: 0.9rem;
-		color: var(--brand);
-		border: 1px solid var(--pink-9);
-		border-radius: 0.25rem;
-
-		&:hover {
-			color: var(--pink-9);
-			text-decoration: none;
-		}
-	} */
 	a {
 		text-decoration: none;
 	}

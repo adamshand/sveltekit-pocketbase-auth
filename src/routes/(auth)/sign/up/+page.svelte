@@ -92,10 +92,4 @@
 {/if}
 
 <style>
-	small {
-		display: inline-block;
-		width: 100%;
-		color: yellowgreen;
-		outline: 1px solid pink;
-	}
 </style>
