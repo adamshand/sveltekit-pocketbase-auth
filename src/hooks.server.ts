@@ -3,6 +3,7 @@ import type { TypedPocketBase } from '$lib/types'
 import PocketBase from 'pocketbase'
 import { env } from '$env/dynamic/public'
 import { Security } from '$lib/pocketbase.svelte'
+import { dev } from '$app/environment'
 
 export const handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase
@@ -20,7 +21,7 @@ export const handle = async ({ event, resolve }) => {
 		event.locals.user = null
 	}
 
-	// Must always run, but be after .loadFromCookie & .authRefresh
+	// Must always run, but be after .loadFromCookie() & .authRefresh()
 	event.locals.security = new Security(event)
 
 	const response = await resolve(event)

@@ -17,6 +17,9 @@
 </a>
 
 <style>
+	h1 {
+		text-align: center;
+	}
 	a {
 		margin-inline: auto;
 	}

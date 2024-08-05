@@ -5,6 +5,7 @@
 
 	// FIXME: use pb.getFileUrl()
 	const baseUrl = 'https://pb.haume.nz/api/files/systemprofiles0/rpsz300dhu7spdm/'
+	let isAuthenticated = $derived($page.data.user?.id)
 </script>
 
 <header>
@@ -15,7 +16,7 @@
 	<a href="/app">experiments</a>
 
 	<span>
-		{#if $page.data.user?.id}
+		{#if isAuthenticated}
 			<button onclick={() => goto('/sign/out')}>sign out</button>
 		{:else}
 			<button onclick={() => goto('/sign/in')}>sign in</button>
