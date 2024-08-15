@@ -10,9 +10,8 @@ export const getAvatarUrl = (user: User) => {
 	return user ? `${base}/${user.id}/${user.avatar}` : null
 }
 
-export function pbAvatarUrl(user: User, size: 'lg' | 'sm' = 'sm') {}
 export const pbError = (e: unknown) => {
-	const err = e as unknown as ClientResponseError
+	const err = e as ClientResponseError
 	dev && console.log(err?.response)
 	error(err?.status, err?.response?.message)
 }

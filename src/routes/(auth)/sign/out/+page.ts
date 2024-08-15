@@ -1,9 +1,9 @@
-import { goto, invalidateAll } from '$app/navigation'
-export const load = async () => {
-	// +page.server.ts cleans locals
-	await invalidateAll()
-	goto('/')
-}
+import { browser } from '$app/environment'
+import { invalidateAll } from '$app/navigation'
 
-// When SSR is disabled, you need to run the below to logout
-// pb.authStore.clear();
+export const load = async () => {
+	// +page.server.ts cleans  locals.pb & locals.user
+	if (browser) {
+		await invalidateAll()
+	}
+}

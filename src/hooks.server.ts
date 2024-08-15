@@ -29,7 +29,7 @@ export const handle = async ({ event, resolve }) => {
 	// httpOnly = false is required for realtime to get the cookie (see verify/+page.svelte)
 	response.headers.set(
 		'set-cookie',
-		event.locals.pb.authStore.exportToCookie({ secure: true, httpOnly: false, sameSite: 'Lax' }),
+		event.locals.pb.authStore.exportToCookie({ httpOnly: false, sameSite: 'Lax', secure: !dev }),
 	)
 	return response
 }
