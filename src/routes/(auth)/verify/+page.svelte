@@ -2,25 +2,24 @@
 	import { dev } from '$app/environment'
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
-	import { pb, pbError } from '$lib/pocketbase.svelte'
-
 	import Debug from '$lib/components/Debug.svelte'
+	import { pb, pbError } from '$lib/pocketbase.svelte'
 
 	let isLoading = $state(false)
 
 	$effect(() => {
-		$page.data.user || goto('/')
-		$page.data.user?.verified && goto('/app')
+		if (!$page.data.user) goto('/')
+		if ($page.data.user?.verified) goto('/app')
 
 		pb.collection('users').subscribe($page.data.user?.id, (e) => {
-			dev && console.log(`verify: action: ${e.action} verified=${e.record.verified}`)
+			if (dev) console.log(`verify: action: ${e.action} verified=${e.record.verified}`)
 			if (e.record.verified) {
 				goto('/app')
 			}
 		})
 
 		return () => {
-			dev && console.log('verify: unsubscribe', $page.data.user?.id)
+			if (dev) console.log('verify: unsubscribe', $page.data.user?.id)
 			pb.collection('users').unsubscribe($page.data.user?.id)
 		}
 	})
@@ -31,7 +30,7 @@
 		try {
 			if ($page.data.user) {
 				await pb.collection('users').requestVerification($page.data.user.email)
-				dev && console.log('verify: resend email', $page.data.user?.email)
+				if (dev) console.log('verify: resend email', $page.data.user?.email)
 				await new Promise((resolve) => setTimeout(resolve, 1500)) // give loading spinner time
 			}
 		} catch (err: unknown) {
