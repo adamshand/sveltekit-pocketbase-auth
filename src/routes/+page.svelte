@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { browser } from '$app/environment'
 	import { page } from '$app/stores'
 	import { getOpenmojiUrl } from '$lib'
+
+	$inspect({ browser })
 </script>
 
 <h1>

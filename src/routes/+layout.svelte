@@ -1,14 +1,12 @@
 <script lang="ts">
+	import { getOpenmojiUrl } from '$lib'
 	import FavIcon from '$lib/components/FavIcon.svelte'
 	import Footer from '$lib/components/Footer.svelte'
 	import Header from '$lib/components/Header.svelte'
-
 	import { getAvatarUrl } from '$lib/pocketbase.svelte'
-	import { getOpenmojiUrl } from '$lib'
-
-	import '@picocss/pico/css/pico.pink.min.css'
-	import '@picocss/pico/css/pico.colors.min.css'
 	import '$lib/style.css'
+	import '@picocss/pico/css/pico.colors.min.css'
+	import '@picocss/pico/css/pico.pink.min.css'
 
 	let { children, data } = $props()
 </script>
