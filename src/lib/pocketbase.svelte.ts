@@ -1,7 +1,8 @@
 import type { ClientResponseError, TypedPocketBase, User } from '$lib/types'
+import { redirect, error, type RequestEvent } from '@sveltejs/kit'
 import PocketBase from 'pocketbase'
+
 import { browser, dev } from '$app/environment'
-import { error, redirect, type RequestEvent } from '@sveltejs/kit'
 import { env } from '$env/dynamic/public'
 
 export const getAvatarUrl = (user: User) => {
@@ -12,7 +13,7 @@ export const getAvatarUrl = (user: User) => {
 
 export const pbError = (e: unknown) => {
 	const err = e as ClientResponseError
-	dev && console.log(err?.response)
+	if (dev) console.log(err?.response)
 	error(err?.status, err?.response?.message)
 }
 
