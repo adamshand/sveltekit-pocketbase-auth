@@ -1,11 +1,12 @@
 import type { TypedPocketBase } from '$lib/types'
+import type { Handle } from '@sveltejs/kit'
 
-import PocketBase from 'pocketbase'
+import { dev } from '$app/environment'
 import { env } from '$env/dynamic/public'
 import { Security } from '$lib/pocketbase.svelte'
-import { dev } from '$app/environment'
+import PocketBase from 'pocketbase'
 
-export const handle = async ({ event, resolve }) => {
+export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '')
 
