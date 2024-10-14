@@ -1,7 +1,10 @@
 import md5 from 'md5'
 
-export const isValidEmail = (email: string) => {
-	return /^[^@\s]+@[^@\s]+\.[^@\s]+/.test(email)
+export function convert24to12(time: string) {
+	const [hours, minutes] = time.split(':').map(Number)
+	const date = new Date()
+	date.setHours(hours, minutes)
+	return date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' })
 }
 
 export const formatLocalDate = (d: string) => {
@@ -41,6 +44,10 @@ export function getOpenmojiUrl(id: string, palette: 'black' | 'color' = 'color')
 
 export const getRandomElement = <T>(arr: T[]): T => {
 	return arr[Math.floor(Math.random() * arr.length)]
+}
+
+export const isValidEmail = (email: string) => {
+	return /^[^@\s]+@[^@\s]+\.[^@\s]+/.test(email)
 }
 
 export function stripHtml(str: string) {
