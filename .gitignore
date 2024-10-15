@@ -21,3 +21,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 src/routes/x layout.server.ts
 src/_hooks.server.ts
+
+# DB
+/db/pocketbase.exe
