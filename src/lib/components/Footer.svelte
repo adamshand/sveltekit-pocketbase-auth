@@ -1,12 +1,8 @@
 <script lang="ts">
-	import Quote from '$lib/components/Quote.svelte'
+	
 </script>
 
 <footer>
-	<div>
-		<!-- <Quote id="5v4vesjd1944x56" /> -->
-		<Quote />
-	</div>
 </footer>
 
 <style>

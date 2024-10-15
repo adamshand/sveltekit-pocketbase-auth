@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getOpenmojiUrl } from '$lib'
+	// import { getOpenmojiUrl } from '$lib'
 	import FavIcon from '$lib/components/FavIcon.svelte'
 	import Footer from '$lib/components/Footer.svelte'
 	import Header from '$lib/components/Header.svelte'
@@ -20,9 +20,9 @@
 			<img alt={data.user.name} src={getAvatarUrl(data.user)} title={data.user.name} />
 		{:else if data.user}
 			<!-- logged in but no avatar -->
-			<img alt="lotus flower" src={getOpenmojiUrl('1F464')} />
+			<!-- <img alt="lotus flower" src={getOpenmojiUrl('1F464')} /> -->
 		{:else}
-			<img alt="lotus flower" src={getOpenmojiUrl('1FAB7')} />
+			<!-- <img alt="lotus flower" src={getOpenmojiUrl('1FAB7')} /> -->
 		{/if}
 
 		{@render children()}

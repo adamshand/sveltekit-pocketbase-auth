@@ -36,11 +36,11 @@ export const getGravatarUrl = (email: string) => {
 	return `https://gravatar.com/avatar/${hash}`
 }
 
-export function getOpenmojiUrl(id: string, palette: 'black' | 'color' = 'color') {
-	const baseUrl = 'https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji'
-	// const baseUrl = 'https://unpkg.com/openmoji';
-	return `${baseUrl}/${palette}/svg/${id}.svg`
-}
+// export function getOpenmojiUrl(id: string, palette: 'black' | 'color' = 'color') {
+// 	const baseUrl = 'https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji'
+// 	// const baseUrl = 'https://unpkg.com/openmoji';
+// 	return `${baseUrl}/${palette}/svg/${id}.svg`
+// }
 
 export const getRandomElement = <T>(arr: T[]): T => {
 	return arr[Math.floor(Math.random() * arr.length)]

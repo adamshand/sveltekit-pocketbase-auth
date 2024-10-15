@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getOpenmojiUrl } from '$lib'
+	// import { getOpenmojiUrl } from '$lib'
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
 
@@ -10,7 +10,7 @@
 
 <header>
 	<a href="/">
-		<img alt="pig face" src={getOpenmojiUrl('1F437')} />
+		<!-- <img alt="pig face" src={getOpenmojiUrl('1F437')} /> -->
 	</a>
 
 	<a href="/app">experiments</a>
