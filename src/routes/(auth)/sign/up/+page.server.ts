@@ -36,7 +36,7 @@ export const actions = {
 		} catch (err: unknown) {
 			pbError(err)
 		}
-		redirect(307, '/verify')
+		redirect(303, '/verify')
 	},
 }
 

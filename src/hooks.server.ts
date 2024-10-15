@@ -10,7 +10,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(env.PUBLIC_POCKETBASE_URL) as TypedPocketBase
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '')
 
-	// dev && console.log('hooks.server: ', locals.pb.authStore.model);
+	// dev && console.log('hooks.server: ', event.locals.pb.authStore.model);
 	try {
 		if (event.locals.pb.authStore.isValid) {
 			await event.locals.pb.collection('users').authRefresh()
