@@ -23,4 +23,4 @@ src/routes/x layout.server.ts
 src/_hooks.server.ts
 
 # DB
-/db/pocketbase.exe
+db
