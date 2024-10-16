@@ -1,0 +1,106 @@
+:root {
+	--brand-50: var(--pico-color-pink-50);
+	--brand-100: var(--pico-color-pink-100);
+	--brand-150: var(--pico-color-pink-150);
+	--brand-200: var(--pico-color-pink-200);
+	--brand-250: var(--pico-color-pink-250);
+	--brand-300: var(--pico-color-pink-300);
+	--brand-350: var(--pico-color-pink-350);
+	--brand-400: var(--pico-color-pink-400);
+	--brand-450: var(--pico-color-pink-450);
+	--brand-500: var(--pico-color-pink-500);
+	--brand-550: var(--pico-color-pink-550);
+	--brand-600: var(--pico-color-pink-600);
+	--brand-650: var(--pico-color-pink-650);
+	--brand-700: var(--pico-color-pink-700);
+	--brand-750: var(--pico-color-pink-750);
+	--brand-800: var(--pico-color-pink-800);
+	--brand-850: var(--pico-color-pink-850);
+	--brand-900: var(--pico-color-pink-900);
+	--brand-950: var(--pico-color-pink-950);
+
+	--brand: var(--brand-400);
+	--brand: var(--pico-primary);
+}
+
+body {
+	/* https://modernfontstacks.com/ */
+	font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari,
+		'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
+}
+h1,
+h2,
+h3
+ {
+	margin-bottom: 1rem;
+	color: var(--brand);
+	text-align: center;
+}
+article {
+	background-color: var(--surface-2);
+}
+
+/* FORMS */
+form small {
+	padding-inline: 0.25rem;
+}
+
+button {
+	padding: 0.5rem;
+}
+
+[data-theme='light'],
+:root:not([data-theme='dark']) {
+	--surface-1: var(--brand-50);
+	--surface-2: var(--brand-100);
+	--surface-3: var(--brand-150);
+	--surface-4: var(--brand-200);
+	--text-1: var(--brand-850);
+	--text-2: var(--brand-400);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--surface-1: var(--brand-950);
+		--surface-2: var(--brand-900);
+		--surface-3: var(--brand-850);
+		--surface-4: var(--brand-800);
+		--text-1: var(--brand-50);
+		--text-2: var(--brand-400);
+	}
+}
+/*** Loading spinner for buttons */
+button[type='submit'] {
+	position: relative;
+	border: 2px solid var(--pink-9);
+	color: var(--pink-4);
+}
+button[type='submit'][aria-busy='true'] {
+	color: transparent;
+}
+button[type='submit'][aria-busy='true'] > span {
+	visibility: hidden;
+}
+button[type='submit'][aria-busy='true']::after {
+	content: '';
+	position: absolute;
+	width: 1.5rem;
+	aspect-ratio: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	border: 4px solid var(--brand);
+	border-top-color: var(--surface-1);
+	border-radius: 50%;
+	animation: spinner 1s ease-in-out infinite;
+}
+@keyframes spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
