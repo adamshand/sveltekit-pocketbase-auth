@@ -1,5 +1,5 @@
 {
-	"name": "play.adam.nz.git",
+	"name": "Minxes",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -15,13 +15,15 @@
 		"test:unit": "vitest"
 	},
 	"devDependencies": {
-		"@picocss/pico": "^2.0.6",
 		"@playwright/test": "^1.47.2",
 		"@sveltejs/adapter-auto": "^3.2.5",
 		"@sveltejs/kit": "^2.6.1",
 		"@sveltejs/vite-plugin-svelte": "4.0.0-next.7",
+		"@tailwindcss/typography": "^0.5.14",
 		"@types/eslint": "^8.56.12",
 		"@types/md5": "^2.3.5",
+		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.13",
 		"eslint": "^9.11.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.44.1",
@@ -29,10 +31,13 @@
 		"md5": "^2.3.0",
 		"open-props": "^1.7.6",
 		"pocketbase": "^0.21.5",
+		"postcss": "^8.4.47",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
+		"prettier-plugin-tailwindcss": "^0.6.5",
 		"svelte": "^5.0.0-next.260",
 		"svelte-check": "^3.8.6",
+		"tailwindcss": "^3.4.14",
 		"tslib": "^2.7.0",
 		"typescript": "^5.6.2",
 		"typescript-eslint": "^8.8.0",
@@ -41,6 +46,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"stripe": "^17.1.0"
+		"stripe": "^17.1.0",
+		"ts-node": "^10.9.2"
 	}
 }
