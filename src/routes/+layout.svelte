@@ -3,16 +3,8 @@
     
     let { children, data } = $props();
 </script>
-<div class="grid grid-flow-rows auto-rows-auto bg-sky-700 gap-10">
-    <header>
-        Header
-    </header>
-    <main class="bg-sky-700">
-        {@render children()}
-    </main>
-    <footer>
-        Footer
-    </footer>
+<div class="flex flex-col bg-sky-700 h-svh content-end">
+    {@render children()}
 </div>
 
 <style>

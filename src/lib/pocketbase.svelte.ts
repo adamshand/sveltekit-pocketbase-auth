@@ -43,13 +43,19 @@ export class Security {
 		this.user = event.locals.user || null
 	}
 
+	isRegistered() {
+		if(!this.user) {
+			redirect(303, '/')
+		}
+	}
+
 	isAuthenticated() {
 		if (!this.user) {
-			// redirect(307, '/sign/in')
-			error(401, 'You are not signed in.')
+			redirect(303, '/')
+			// error(401, 'You are not signed in.')
 		}
 		if (!this.user?.verified) {
-			redirect(307, '/verify')
+			redirect(307, '/home')
 			// error(403, "Your account's email address has not been verified")
 		}
 		return this
