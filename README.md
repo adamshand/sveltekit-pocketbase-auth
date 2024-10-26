@@ -6,7 +6,7 @@ I'm a newish JavaScript developer and I found CSR, SSR, authentication, hooks et
 
 - Svelte 5 in runes mode
 - PocketBase
-  - Collections are typed (see [hooks.server]() & [pocketbase.svelte](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/main/src/lib/pocketbase.svelte.ts))
+  - Collections are typed (see [hooks.server](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/main/src/hooks.server.ts) & [pocketbase.svelte](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/main/src/lib/pocketbase.svelte.ts))
   - Supports authenticated access for both [server](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/main/src/hooks.server.ts) (SSR) and [client](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/main/src/lib/pocketbase.svelte.ts) (CSR) routes
   - Sign in/out/up and verify routes
   - Uses realtime to react to account email being [verified](https://github.com/adamshand/sveltekit-pocketbase-auth/blob/main/src/routes/(auth)/verify/%2Bpage.svelte) (thanks to example by [RdnMach](https://github.com/RbnMach/sveltekit-pocketbase-realtime/blob/main/src/routes/user-panel/ListaItems.svelte))
